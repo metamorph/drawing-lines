@@ -51,6 +51,17 @@
          (every? #(and (pos? %) (<= % max-rgb-value)) color)]}
   (update canvas :pixels #(assoc % xy color)))
 
+(defn line-to-pixels
+  "Calculates the pixels to fill when drawing a line from x1y1 to x2y2.
+  Uses Bresenham's line algorithm (https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)."
+  [[x1 y1] [x2 y2]]
+  nil)
+
+(defn draw-line
+  "Draws a line from x1y1 to x2y2 using the specified color"
+  [canvas [x1 y1 :as c1] [x2 y2 :as c2] rgb]
+  (reduce #(draw-pixel canvas % rgb) canvas (line-to-pixels c1 c2)))
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]

@@ -27,3 +27,9 @@
          (line-to-pixels [1 1] [11 5])))
   (is (= [[1 1] [2 1] [3 1] [4 1]]
          (line-to-pixels [1 1] [4 1]))))
+
+(deftest rgb-as-int
+  (is (= [128 67 234]
+         (int->rgb (rgb->int [128 67 234]))))
+  (is (= [0 0 0]
+         (int->rgb (rgb->int [0 0 0])))))

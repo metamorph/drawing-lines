@@ -1,8 +1,21 @@
 (ns drawing-lines.core
   (:gen-class))
 
-;; TODO:
-;; - Add tests to create the images
+
+(defn rgb->int
+  "Represents an RGB pixel as 24bit integer"
+  [[red green blue]]
+  (+ (bit-shift-left red 16)
+     (bit-shift-left green 8)
+     blue))
+
+(defn int->rgb
+  "Unpacks a 24bit integer into RGB components."
+  [i]
+  [(bit-and (bit-shift-right i 16) 0xFF)
+   (bit-and (bit-shift-right i 8) 0xFF)
+   (bit-and i 0xFF)])
+
 
 (def ^:const max-rgb-value
   "The max allowed RGB value."
